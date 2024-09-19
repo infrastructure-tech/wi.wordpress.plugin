@@ -1,0 +1,23 @@
+clear_build_path: true
+next:
+- build: wordpress_plugin
+	build_in: package
+	copy:
+	- /inc/: package/inc/
+	- /src/: package/src/
+	config:
+		visibility: public
+		plugin_name: Web Infrastructure
+		description: "Eons Web Infrastructure plugin for WordPress"
+		author: Eons LLC
+		author_uri: https://eons.llc
+		license: MIT License
+		next:
+		- run_when_any:
+			- release
+			build: publish
+			path: .
+			build_in: .
+			config:
+				name: cookies
+				type: plugin
